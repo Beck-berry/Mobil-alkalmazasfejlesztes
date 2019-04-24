@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mondd ki</string>
+    <string name="detailsButton">A játékról</string>
+    <string name="singleButton">Egy játékos</string>
+    <string name="raceButton">Két játékos</string>
+    <string name="nameText">Mondd ki! játék</string>
+    <string name="listenDesc">Halljuk!</string>
+    <string name="gamer2Text">Játékos 2</string>
+    <string name="gamer1Text">Játékos 1</string>
+    <string name="nicknameText">Becenév</string>
+    <string name="pointsText">Pontok</string>
+    <string name="dateText">Dátum</string>
+    <string name="rankingText">Ranglista</string>
+    <string name="newButton">Új szó</string>
+    <string name="sendButton">Küld</string>
+    <string name="saveButton">Játék mentése</string>
+</resources>

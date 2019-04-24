@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sag das Wort</string>
+    <string name="gamer2Text">Spieler 2</string>
+    <string name="gamer1Text">Spieler 1</string>
+    <string name="nicknameText">Nickname</string>
+    <string name="detailsButton">Über das Spiel</string>
+    <string name="singleButton">Single Spieler</string>
+    <string name="raceButton">Zwei Spielern</string>
+    <string name="rankingText">Ergebnisse</string>
+    <string name="dateText">Datum</string>
+    <string name="pointsText">Punkte</string>
+    <string name="listenDesc">Läss es hören!</string>
+    <string name="nameText">Sag das Wort Spiel</string>
+    <string name="newButton">Neue Wort</string>
+    <string name="sendButton">Senden</string>
+    <string name="saveButton">Speichern</string>
+</resources>
