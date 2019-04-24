@@ -16,6 +16,8 @@ import java.util.ArrayList;
  *  https://developer.android.com/reference/android/speech/SpeechRecognizer
  *  https://www.techjini.com/blog/android-speech-to-text-tutorial-part1/
  *  https://riptutorial.com/android/example/21621/speech-to-text-conversion
+ *
+ *  https://www.truiton.com/2014/06/android-speech-recognition-without-dialog-custom-activity/
  */
 
 public class Game implements RecognitionListener {

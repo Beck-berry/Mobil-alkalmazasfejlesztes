@@ -1,10 +1,14 @@
 package hu.first.saytheword;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -30,17 +34,14 @@ import java.util.Random;
  */
 
 public class SinglePlayerGame extends AppCompatActivity {
-
-    protected TextView mSzo;
-    protected TextView mPoints;
-    protected Button newBtn;
-    protected ImageButton listenBtn;
+    private TextView mSzo;
+    private TextView mPoints;
+    private Button newBtn;
+    private ImageButton listenBtn;
     private String[] words;
     private ArrayList<CharSequence> usedWords = new ArrayList<>();
     private static final int RESULT_SPEECH = 3000;
     private SpeechRecognizer sr = null;
-    public static final String EXTRA_MESSAGE = "hu.first.saytheword.SinglePlayerGame";
-
 
     /**
      * Megkeresi a szukseges View-kat, valtozoba teszi oket.
@@ -54,18 +55,30 @@ public class SinglePlayerGame extends AppCompatActivity {
         setContentView(R.layout.activity_single_player_game);
 
         this.words = this.getResources().getStringArray(R.array.words);
-
         this.newBtn = findViewById(R.id.new_button);
-        this.newBtn.setClickable(false);
-        this.newBtn.setBackgroundColor(Color.GRAY);
         this.listenBtn = findViewById(R.id.listen1_button);
-        this.listenBtn.setBackgroundColor(Color.TRANSPARENT);
         this.mPoints = findViewById(R.id.points_textView);
         this.mSzo = findViewById(R.id.word_textView);
-        this.mSzo.setTextColor(Color.BLACK);
 
         this.mSzo.setText(words[new Random().nextInt(words.length)]);
         this.usedWords.add(mSzo.getText());
+
+        setNewRound();
+
+        /** Ha nincs internet kapcsolat, nem mukodik majd a hangfelismeres. Ertesiteni kell a usert.*/
+        if(!isThereInternetConnection()){
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.noConnTitle)
+                    .setMessage(R.string.noConnDesc)
+                    .setNeutralButton("OK", null) // TODO vissza a kezdolapra
+                    .show();
+        }
+    }
+
+    public boolean isThereInternetConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
     }
 
     /**
@@ -78,10 +91,7 @@ public class SinglePlayerGame extends AppCompatActivity {
         } while (usedWords.contains(mSzo.getText()));
         usedWords.add(mSzo.getText());
 
-        this.mSzo.setTextColor(Color.BLACK);
-        this.listenBtn.setBackgroundColor(Color.TRANSPARENT);
-        this.newBtn.setClickable(false);
-        this.newBtn.setBackgroundColor(Color.GRAY);
+        setNewRound();
     }
 
     /**
@@ -99,7 +109,6 @@ public class SinglePlayerGame extends AppCompatActivity {
                     listenBtn.setBackgroundColor(Color.GREEN);
                     Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                     intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                    intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
                     intent.putExtra(RecognizerIntent.EXTRA_PROMPT, mSzo.getText());
 
                     //sr.startListening(intent);
@@ -134,13 +143,11 @@ public class SinglePlayerGame extends AppCompatActivity {
                 List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 mAnswer = results.get(0);
                 if (mAnswer.toLowerCase().equals(mSzo.getText().toString().toLowerCase())){
-                    mSzo.setTextColor(Color.GREEN);
+                    setPlayerWasRight();
                     int tmp = Integer.parseInt(mPoints.getText().toString())+1;
                     mPoints.setText(String.valueOf(tmp));
-                    this.newBtn.setClickable(true);
-                    this.newBtn.setBackgroundColor(Color.GREEN);
                 } else {
-                    mSzo.setTextColor(Color.RED);
+                    setPlayerWasWrong();
                 }
             }
         }
@@ -159,5 +166,23 @@ public class SinglePlayerGame extends AppCompatActivity {
             usedWords.clear();
             finish();
         }
+    }
+
+    private void setNewRound(){
+        this.mSzo.setTextColor(Color.BLACK);
+        this.listenBtn.setBackgroundColor(Color.TRANSPARENT);
+        this.newBtn.setClickable(false);
+        this.newBtn.setBackgroundColor(Color.GRAY);
+    }
+
+    private void setPlayerWasRight(){
+        mSzo.setTextColor(Color.GREEN);
+        newBtn.setBackgroundColor(Color.GREEN);
+        newBtn.setClickable(true);
+    }
+
+    private void setPlayerWasWrong(){
+        mSzo.setTextColor(Color.RED);
+        listenBtn.setBackgroundColor(Color.RED);
     }
 }

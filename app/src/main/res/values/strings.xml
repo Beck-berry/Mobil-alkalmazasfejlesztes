@@ -14,6 +14,8 @@
     <string name="newButton">New word</string>
     <string name="saveButton">Save the Game</string>
     <string name="sendButton">Send</string>
+    <string name="noConnTitle">No Internet connection</string>
+    <string name="noConnDesc">You should connect to the Wi-Fi or to the </string>
     <string-array name="words">
         <!-- https://www.szeretlekmagyarorszag.hu/30-magyar-nyelvtoro-amibe-mi-is-belegabalyodtunk/ -->
         <item>kiskutyák</item>
@@ -25,7 +27,6 @@
         <item>A paplak nappalijában pipál</item>
         <item>A pap és a pék két képet kap</item>
         <item>Jobb egy lúdnyak tíz tyúknyaknál</item>
-        <item>Nem lehet a Márta másé mert a Márta már Tamásé</item>
         <item>Lenin mauzóleumának millenniumi lelinóleumozása</item>
         <item>Sohasem hallottam szebben szóló szép sípszót</item>
         <item>Csendes csiga csinosítgat kicsi csodás háza táján</item>
