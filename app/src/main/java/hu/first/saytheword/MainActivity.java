@@ -1,12 +1,5 @@
 package hu.first.saytheword;
 
-/** Feladatkiiras:
-Say the Word: A SpeechRecognisation implementálása. A strings.xml-ben egy string tömb tárolása,
-melynek egy random eleme megjelenik a képernyőn. Alatta megjelenik egy gomb, melyet megnyomva a
-felhasználónak ki kell mondania a szöveget, ha ez sikeres volt, a felirat kizöldül, a START gomb
-pedig egy NEW-ra változik, amelyre nyomva egy új szó jelenik meg vörösen a képernyőn.
- */
-
 /**
  * Tesztelos keszulek:
  * Xiaomi Redmi 4X
@@ -14,7 +7,9 @@ pedig egy NEW-ra változik, amelyre nyomva egy új szó jelenik meg vörösen a 
  */
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,10 +20,15 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private String lang = null;
+    private SharedPreferences settings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         Spinner sp = findViewById(R.id.lang_spinner);
         if(sp != null) {
@@ -80,10 +80,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String lang = parent.getItemAtPosition(position).toString();
-        //if (!lang.equals(" ")) {
+        switch (position) {
+            case 1:
+                lang = "hu";
+                break;
+            case 2:
+                lang = "en";
+                break;
+            case 3:
+                lang = "de";
+                break;
+            default: break;
+        }
+        if (lang != null) {
             changeLanguage(lang);
-        //}
+        }
     }
 
     /**
@@ -93,18 +104,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {}
 
-    /**
-     * Nyelvvaltoztato metodus.
-     * @param lang
-     */
     private void changeLanguage(String lang){
-        /*Resources resources = getResources();
+        Resources resources = getResources();
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
         android.content.res.Configuration config = new android.content.res.Configuration();
         config.locale = locale;
         resources.updateConfiguration(config, resources.getDisplayMetrics());
-        /*finish();
-        startActivity(getIntent());*/
+        settings.edit().putString("LANG", lang).apply();
+        startActivity(new Intent(getBaseContext(), MainActivity.class));
+        finish();
     }
 }

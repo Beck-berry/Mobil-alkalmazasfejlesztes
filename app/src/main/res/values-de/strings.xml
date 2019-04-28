@@ -15,4 +15,13 @@
     <string name="newButton">Neue Wort</string>
     <string name="sendButton">Senden</string>
     <string name="saveButton">Speichern</string>
+    <string-array name="words">
+        <item>Bliddarmentzündung</item>
+        <item>Aufwiedersehen</item>
+        <item>Zukunft</item>
+        <item>Sport</item>
+        <item>Hunde</item>
+        <item>Grüß Gott</item>
+        <item>Willkommen</item>
+    </string-array>
 </resources>

@@ -15,26 +15,15 @@
     <string name="saveButton">Save the Game</string>
     <string name="sendButton">Send</string>
     <string name="noConnTitle">No Internet connection</string>
-    <string name="noConnDesc">You should connect to the Wi-Fi or to the </string>
+    <string name="noConnDesc">You should connect to the Network.</string>
     <string-array name="words">
-        <!-- https://www.szeretlekmagyarorszag.hu/30-magyar-nyelvtoro-amibe-mi-is-belegabalyodtunk/ -->
-        <item>kiskutyák</item>
-        <item>kész az app</item>
-        <item>működik e</item>
-        <item>teszt</item>
-        <item>haha</item>
-        <item>Száz sasszem meg száz sasszem</item>
-        <item>A paplak nappalijában pipál</item>
-        <item>A pap és a pék két képet kap</item>
-        <item>Jobb egy lúdnyak tíz tyúknyaknál</item>
-        <item>Lenin mauzóleumának millenniumi lelinóleumozása</item>
-        <item>Sohasem hallottam szebben szóló szép sípszót</item>
-        <item>Csendes csiga csinosítgat kicsi csodás háza táján</item>
-        <item>Jól járnak a molnárok mikor jó nyár jár rájok</item>
-        <item>Öt török öt görögöt dögönyöz</item>
-        <item>Az ibafai papnak fapipája van ezért az ibafai papi pipa papi fapipa</item>
-        <item>A kövér kuvik a vak kivi kova kövére kíváncsi</item>
-        <item>Fekete bikapata kopog a fekete pepita patika köveken</item>
+        <item>reach</item>
+        <item>tought</item>
+        <item>taught</item>
+        <item>mild</item>
+        <item>wild</item>
+        <item>appreciate</item>
+        <item>wow</item>
     </string-array>
     <string-array name="languages">
         <item name="default"> </item>
@@ -42,6 +31,15 @@
         <item name="en">English</item>
         <item name="de">Deutsch</item>
     </string-array>
-    <string name="detailsText" translatable="false">2018/19/2 Mobil alkalmazásfejlesztés kurzus projektfeladata.
-        Feladatkiírás: A SpeechRecognisation implementálása. A strings.xml-ben egy string tömb tárolása, melynek egy random eleme megjelenik a képernyőn. Alatta megjelenik egy gomb, melyet megnyomva a felhasználónak ki kell mondania a szöveget, ha ez sikeres volt, a felirat kizöldül, a START gomb pedig egy NEW-ra változik, amelyre nyomva egy új szó jelenik meg vörösen a képernyőn.</string>
+    <string name="detailsText" translatable="false">2018/19/2 Mobil alkalmazásfejlesztés kurzus projektfeladata.<br/><br />
+        Feladatkiírás:<br/>
+        A SpeechRecognisation implementálása. A strings.xml-ben egy string tömb tárolása, melynek egy random eleme megjelenik
+        a képernyőn. Alatta megjelenik egy gomb, melyet megnyomva a felhasználónak ki kell mondania a szöveget, ha ez sikeres
+        volt, a felirat kizöldül, a START gomb pedig egy NEW-ra változik, amelyre nyomva egy új szó jelenik meg vörösen a képernyőn.
+        <br /><br />
+        Megvalósítás:<br/>
+        A játékos módba lépve a mikrofon gomb nyomva tartása alatt lehet beszélni, az elengedéssel ellenőrzi a bemondott szöveg
+        helyességét. Ha sikerült kimondani a szót/szöveget, a továbblépés elérhetővé válik és újabb szó kérhető. Ha a játékos nem
+        tudja teljesíteni a feltételt, elmentheti az eredményét.
+    </string>
 </resources>

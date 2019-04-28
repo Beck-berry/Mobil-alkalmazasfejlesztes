@@ -29,6 +29,7 @@ import java.util.Random;
  *  https://www.techjini.com/blog/android-speech-to-text-tutorial-part1/
  *  https://androidforums.com/threads/on-press-and-hold.421554/
  *  https://stackoverflow.com/questions/7973023/what-is-the-list-of-supported-languages-locales-on-android
+ *  https://www.truiton.com/2014/06/android-speech-recognition-without-dialog-custom-activity/
  */
 
 public class SinglePlayerGame extends AppCompatActivity implements RecognitionListener {
@@ -38,7 +39,6 @@ public class SinglePlayerGame extends AppCompatActivity implements RecognitionLi
     private ImageButton listenBtn;
     private String[] words;
     private ArrayList<CharSequence> usedWords = new ArrayList<>();
-    private static final int RESULT_SPEECH = 3000;
     private static final int REQUEST_RECORD_PERMISSION = 100;
     private SpeechRecognizer sr = null;
     private Intent intent = null;
@@ -104,22 +104,15 @@ public class SinglePlayerGame extends AppCompatActivity implements RecognitionLi
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, mSzo.getText());
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
+        ActivityCompat.requestPermissions(SinglePlayerGame.this,
+                new String[]{Manifest.permission.RECORD_AUDIO},
+                REQUEST_RECORD_PERMISSION);
 
         listenBtn.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
                     listenBtn.setBackgroundColor(Color.GREEN);
 
-                    //sr.startListening(intent);
-                    ActivityCompat.requestPermissions(SinglePlayerGame.this,
-                        new String[]{Manifest.permission.RECORD_AUDIO},
-                        REQUEST_RECORD_PERMISSION);
-
-                    /*try {
-                        startActivityForResult(intent, RESULT_SPEECH);
-                    } catch (ActivityNotFoundException a) {
-                        Toast.makeText(getApplicationContext(),"HIBA",Toast.LENGTH_SHORT).show();
-                    }*/
                 } else if(event.getAction() == android.view.MotionEvent.ACTION_UP){
                     listenBtn.setBackgroundColor(Color.TRANSPARENT);
                     sr.stopListening();
@@ -128,33 +121,6 @@ public class SinglePlayerGame extends AppCompatActivity implements RecognitionLi
             }
         });
     }
-
-    /*
-     * A hangfelismeres eredmenyet osszeveti az elvart valasszal.
-     * @param requestCode
-     * @param resultCode
-     * @param data
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        String mAnswer;
-
-        if (requestCode == RESULT_SPEECH) {
-            if (resultCode == RESULT_OK) {
-                List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                mAnswer = results.get(0);
-                if (mAnswer.toLowerCase().equals(mSzo.getText().toString().toLowerCase())){
-                    setPlayerWasRight();
-                    int tmp = Integer.parseInt(mPoints.getText().toString())+1;
-                    mPoints.setText(String.valueOf(tmp));
-                } else {
-                    setPlayerWasWrong();
-                }
-            }
-        }
-    }*/
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -234,6 +200,10 @@ public class SinglePlayerGame extends AppCompatActivity implements RecognitionLi
     public void onError(int error) {
     }
 
+    /**
+     * A hangfelismeres eredmenyet osszeveti az elvart valasszal.
+     * @param results
+     */
     @Override
     public void onResults(Bundle results) {
         ArrayList<String> speech = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
