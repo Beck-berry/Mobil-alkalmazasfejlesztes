@@ -24,7 +24,7 @@
         <item>Monday</item>
         <item>Tuesday</item>
         <item>it works</item>
-        <item>That's the spirit</item>
+        <item>That\'s the spirit</item>
     </string-array>
     <string-array name="languages">
         <item name="default"> </item>
