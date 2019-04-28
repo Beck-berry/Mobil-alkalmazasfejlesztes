@@ -12,7 +12,7 @@
     <string name="pointsText">Punkte</string>
     <string name="listenDesc">Läss es hören!</string>
     <string name="nameText">Sag das Wort Spiel</string>
-    <string name="newButton">Neue Wort</string>
+    <string name="newButton">Neues Wort</string>
     <string name="sendButton">Senden</string>
     <string name="saveButton">Speichern</string>
     <string-array name="words">
@@ -24,4 +24,6 @@
         <item>Grüß Gott</item>
         <item>Willkommen</item>
     </string-array>
+    <string name="noConnTitle">keine Internetverbindung</string>
+    <string name="noConnDesc">Sie sollten sich mit dem Netzwerk verbinden.</string>
 </resources>
