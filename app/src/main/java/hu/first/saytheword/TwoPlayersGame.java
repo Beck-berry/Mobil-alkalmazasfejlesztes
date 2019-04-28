@@ -2,7 +2,6 @@ package hu.first.saytheword;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import hu.first.saytheword.Game;
 
 
 public class TwoPlayersGame extends AppCompatActivity {
