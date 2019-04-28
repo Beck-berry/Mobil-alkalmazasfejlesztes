@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private String lang = null;
     private SharedPreferences settings;
 
+    public static final String EXTRA_MESSAGE = "hu.first.saytheword.Main.lang";
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

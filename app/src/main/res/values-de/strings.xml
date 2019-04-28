@@ -17,12 +17,10 @@
     <string name="saveButton">Speichern</string>
     <string-array name="words">
         <item>Bliddarmentzündung</item>
-        <item>Aufwiedersehen</item>
         <item>Zukunft</item>
         <item>Sport</item>
         <item>Hunde</item>
         <item>Grüß Gott</item>
-        <item>Willkommen</item>
     </string-array>
     <string name="noConnTitle">keine Internetverbindung</string>
     <string name="noConnDesc">Sie sollten sich mit dem Netzwerk verbinden.</string>

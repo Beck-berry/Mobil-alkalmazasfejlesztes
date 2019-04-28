@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -32,7 +34,7 @@ public class SaveTheGame extends AppCompatActivity {
 
         Intent intent = getIntent();
         earnedPoints.setText(intent.getStringExtra(Intent.EXTRA_TEXT));
-        today.setText(new SimpleDateFormat("yyyy-MM-dd HH:MM", Locale.getDefault()).format(new Date()));
+        today.setText(DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date()));
     }
 
 

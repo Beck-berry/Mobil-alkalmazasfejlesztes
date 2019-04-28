@@ -18,12 +18,13 @@
     <string name="noConnDesc">You should connect to the Network.</string>
     <string-array name="words">
         <item>reach</item>
-        <item>tought</item>
-        <item>taught</item>
-        <item>mild</item>
-        <item>wild</item>
         <item>appreciate</item>
         <item>wow</item>
+        <item>this is the test</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>it works</item>
+        <item>That's the spirit</item>
     </string-array>
     <string-array name="languages">
         <item name="default"> </item>

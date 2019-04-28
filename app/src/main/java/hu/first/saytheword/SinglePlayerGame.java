@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
+
+import static hu.first.saytheword.MainActivity.EXTRA_MESSAGE;
 
 /** Documentation used:
  *  https://developer.android.com/reference/android/speech/SpeechRecognizer
@@ -70,7 +74,9 @@ public class SinglePlayerGame extends AppCompatActivity implements RecognitionLi
                     .setMessage(R.string.noConnDesc)
                     .setNeutralButton("OK", null) // TODO vissza a kezdolapra
                     .show();
-        } else setNewRound();
+        }
+
+        setNewRound();
     }
 
     public boolean isThereInternetConnection(){
@@ -101,7 +107,7 @@ public class SinglePlayerGame extends AppCompatActivity implements RecognitionLi
         sr = SpeechRecognizer.createSpeechRecognizer(this);
         sr.setRecognitionListener(this);
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault().toString());
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, mSzo.getText());
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
         ActivityCompat.requestPermissions(SinglePlayerGame.this,
@@ -112,7 +118,7 @@ public class SinglePlayerGame extends AppCompatActivity implements RecognitionLi
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
                     listenBtn.setBackgroundColor(Color.GREEN);
-
+                    sr.startListening(intent);
                 } else if(event.getAction() == android.view.MotionEvent.ACTION_UP){
                     listenBtn.setBackgroundColor(Color.TRANSPARENT);
                     sr.stopListening();
